@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace Archivos
+{
+
+		class Program
+		{
+			static void Main(string[] args)
+			{
+				Archivo archivo = new Archivo();
+				archivo.leerArchivo();
+				archivo.verifyFileType();
+				List<string[]> myFile = archivo.getFileContent();
+
+				foreach(string[] array in myFile)
+				{
+
+					Console.WriteLine("id: " + array[0] + "\nNombre: " + array[1] + "\nDirección: " + array[2] + "\nTelefono: " + array[3]);
+
+				}
+
+				Console.ReadKey();
+			}
+		}
+}
+

@@ -1,0 +1,62 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace Archivos
+{
+	public class Archivo
+	{
+		private string Path = @"C:\Resultado.csv";
+		string extension;
+
+
+		public List<string[]> getFileContent() 
+		{
+			List<string[]> arrText = new List<string[]>();
+			string line;
+			string[] row;
+
+			StreamReader leerArchivo = new StreamReader(this.Path);
+				while ((line = leerArchivo.ReadLine()) != null)
+				{
+					row = line.Split(',');
+					arrText.Add(row);
+				}
+
+				return arrText;
+			}
+
+		public void verifyFileType()
+		{
+
+			if(verifyPath())
+				if (Path.GetExtension(this.Path) == ".csv")
+					Console.WriteLine("Tu archivo si es CSV");
+			else
+				Console.WriteLine("Tu archivo no es CSV es " + Path.GetExtension(this.Path) );
+		}
+
+		private Boolean verifyPath()
+		{
+			Boolean fileExist;
+			if(File.Exists(this.Path))
+				fileExist = true;
+			else
+				fileExist = false;
+
+			return fileExist;
+		}
+
+		public void leerArchivo()
+		{
+			Console.WriteLine("Escriba el nombre del archivo:");
+			this.Path = Console.ReadLine();
+		}
+
+
+		}
+}
